@@ -16,6 +16,11 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
     height: 100%;
     position: relative;
   }
+  .show-more a {
+    color: #2E7BB4;
+    text-decoration: none;
+    font-weight: bold;
+  }
   ul li a {
     display: inline-block;
     height: 102px;
