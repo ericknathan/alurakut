@@ -77,9 +77,34 @@ export default function Home() {
     })
     .then(completeResponse => {
       setFollowers(completeResponse);
-      return console.log(completeResponse);
     });
-  }, [followers])
+
+    fetch('https://graphql.datocms.com', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'c944a0a88a029af7f4744ee334641a',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `{ query {
+          allCommunities {
+            id
+            title
+            imageUrl
+            creatorSlug
+          }
+        }}`
+      })
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(completeResponse => {
+      const communities = completeResponse.data.data.allCommunities;
+      console.log(completeResponse);
+    });
+  }, [followers]);
 
   function handleCreateCommunity(e) {
     e.preventDefault();
